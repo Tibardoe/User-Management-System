@@ -1,0 +1,99 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --headingFontFamily: "K2D", sans-serif;
+    --bodyFontFamily: "Kanit", sans-serif;
+    --primaryColor: #E1EFF6;
+    --secondaryColor: #97D2FB;
+    --accentColor: #83BCFF;
+}
+
+body {
+    background-color: var(--primaryColor);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100dvh;
+}
+
+.info-container {
+    display: grid;
+    grid-template-columns: 200px auto;
+    grid-template-rows: 200px auto;
+    gap: 50px;
+}
+
+.circle-text {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    background-color: var(--secondaryColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--headingFontFamily);
+    font-size: 4rem;
+    font-weight: bold;
+}
+
+.info-container>h1 {
+    font-family: var(--headingFontFamily);
+    font-size: 4rem;
+    display: flex;
+    align-items: center;
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-profile {
+    padding: 10px 20px;
+    border-radius: 8px;
+    background-color: var(--secondaryColor);
+    font-family: var(--bodyFontFamily);
+    border: none;
+    font-size: 1.2rem;
+    transition: 0.3s ease-in;
+}
+
+.edit-profile:hover {
+    background-color: var(--accentColor);
+}
+
+.bio {
+    font-family: var(--bodyFontFamily);
+    font-size: 1.3rem;
+}
+
+.userlist-btn-form {
+    grid-column: span 2;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.userlist-btn {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: var(--accentColor);
+    font-family: var(--bodyFontFamily);
+    border: none;
+    font-size: 1.2rem;
+    transition: 0.3s ease-in;
+    font-weight: bolder;
+    transition: 0.3s ease-in;
+}
+
+.userlist-btn:hover {
+    background-color: var(--secondaryColor);
+}

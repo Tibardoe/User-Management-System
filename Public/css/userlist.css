@@ -1,0 +1,17 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --headingFontFamily: "K2D", sans-serif;
+    --bodyFontFamily: "Kanit", sans-serif;
+    --primaryColor: #E1EFF6;
+    --secondaryColor: #97D2FB;
+    --accentColor: #83BCFF;
+}
+
+body {
+    background-color: var(--primaryColor);
+}
