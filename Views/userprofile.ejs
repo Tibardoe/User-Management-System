@@ -20,6 +20,10 @@
 
 <body>
     <main>
+        <form action="/delete/<%= record.id %>" method="post">
+            <button class="delete-btn" type="submit">Delete User</button>
+        </form>
+
         <div class="edit-container">
             <h1>Edit Info</h1>
             <form action="/save/<%= record.id %>" method="post">
@@ -48,6 +52,15 @@
                             <input type="text" name="password" value="<%= record.password %>">
                         </div>
                     </div>
+
+                    <div class="role-input">
+                        <label for="role">Role:</label>
+                        <select name="role" id="role">
+                            <option value="admin" <%=record.role==='admin' ? 'selected' : '' %>>Admin</option>
+                            <option value="user" <%=record.role==='user' ? 'selected' : '' %>>User</option>
+                        </select>
+                    </div>
+
                 </div>
 
                 <button class="save-btn" type="submit">Save Edit</button>

@@ -20,8 +20,52 @@
 
 <body>
     <main>
-        <h1>List of Users</h1>
+        <div class="user-list">
+            <h1 class="table-caption">List of Users</h1>
 
+            <table>
+                <thead>
+                    <tr class="headings">
+                        <th>Serial Number</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Role</th>
+                        <th>Alter User</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% userList.forEach(list=> { %>
+                        <tr>
+                            <td>
+                                <%= list.id %>
+                            </td>
+                            <td>
+                                <%= list.name %>
+                            </td>
+                            <td>
+                                <%= list.email %>
+                            </td>
+                            <td>
+                                <%= list.status %>
+                            </td>
+                            <td>
+                                <%= list.role %>
+                            </td>
+                            <td class="btn-cell">
+                                <form class="edit" action="/edit/<%= list.id %>" method="get">
+                                    <button class="edit-btn" type="submit">Edit</button>
+                                </form>
+                                <form class="delete" action="/delete/<%= list.id %>" method="post">
+                                    <button class="delete-btn" type="submit">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        <% }); %>
+                </tbody>
+            </table>
+        </div>
     </main>
 
 

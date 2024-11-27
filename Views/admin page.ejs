@@ -30,9 +30,9 @@
                         <%= details.name %>
                     </h1>
 
-                    <span class="btn">
-                        <button class=" edit-profile">Edit Profile</button>
-                    </span>
+                    <form class="btn" action="/edit/<%= details.id %>" method="get">
+                        <button type="submit" class=" edit-profile">Edit Profile</button>
+                    </form>
 
                     <div class="bio">
                         <p>
