@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Profile</title>
-    <link rel="stylesheet" href="/css/userprofile.css">
+    <title>Admin Page</title>
+    <link rel="stylesheet" href="/css/admin.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -20,44 +20,57 @@
 
 <body>
     <main>
-        <div class="edit-container">
-            <h1>Edit Info</h1>
-            <form action="/save/<%= record.id %>" method="post">
-                <div class="whole-form">
-                    <div class="container">
-                        <div class="name-input">
-                            <label for="name">Name:</label>
-                            <input type="text" name="name" value="<%= record.name %>">
-                        </div>
+        <form action="/log-out" method="post">
+            <button class="logout-btn" type="submit">Log Out</button>
+        </form>
 
-                        <div class="email-input">
-                            <label for="email">Email:</label>
-                            <input type="text" name="email" value="<%= record.email %>">
-                        </div>
+        <div class="info-container">
+            <% initials=details.name.split(" ").map(name => name[0]).join("") %>
+                <span class=" circle-text">
+                <%= initials %>
+                    </span>
 
-                        <div class="gender-input">
-                            <label for="gender">Gender:</label>
-                            <select name="gender" id="gender">
-                                <option value="male" <%=record.gender==="male" ? "selected" : "" %>>Male</option>
-                                <option value="female" <%=record.gender==="female" ? "selected" : "" %>>Female</option>
-                            </select>
-                        </div>
+                    <h1>
+                        <%= details.name %>
+                    </h1>
 
-                        <div class="password-input">
-                            <label for="password">Password:</label>
-                            <input type="text" name="password" value="<%= record.password %>">
-                        </div>
+                    <form class="btn" action="/edit/<%= details.id %>" method="get">
+                        <button type="submit" class=" edit-profile">Edit Profile</button>
+                    </form>
+
+                    <div class="bio">
+                        <p>
+                            Email: <%= details.email %>
+                        </p>
+
+                        <p>
+                            Role: <%= details.role %>
+                        </p>
+
+                        <p>
+                            Gender: <%= details.gender %>
+                        </p>
+
+                        <p>
+                            Status: <%= details.status %>
+                        </p>
+
+                        <p>
+                            id: <%= details.user_id %>
+                        </p>
+
+                        <p>
+                            Date of account creation: <%= details.created_at %>
+                        </p>
                     </div>
-                </div>
+        </div>
 
-                <button class="save-btn" type="submit">Save Edit</button>
-            </form>
+
+
     </main>
 
-    </div>
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src=" https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js">
+    </script>
     <script src="/js/script.js"></script>
 </body>
 

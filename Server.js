@@ -2,6 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
 import dotenv from "dotenv";
+import session from "express-session";
 
 dotenv.config();
 
@@ -19,6 +20,12 @@ const db = new pg.Client({
 db.connect();
 
 app.use(express.static("public"));
+
+app.use(session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false
+}));
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -44,7 +51,15 @@ app.get("/edit/:id", async (req, res) => {
     const result = response.rows;
     const foundRecord = result.find(record => id === record.id);
 
-    res.render("userprofile.ejs", { record: foundRecord });
+    if (req.session.role === "admin") {
+        res.render("userprofile.ejs", { record: foundRecord });
+    } else if (req.session.role === "user") {
+        res.render("user edit.ejs", { record: foundRecord });
+    } else {
+        res.redirect("/");
+    }
+
+
 });
 
 app.post("/login", async (req, res) => {
@@ -53,25 +68,23 @@ app.post("/login", async (req, res) => {
     const response = await db.query("SELECT * FROM user_list");
     const result = response.rows;
 
-
     for (const account of result) {
 
         if (username !== '' && username === account.email) {
-            console.log("user exist");
 
             if (password != '' && password === account.password) {
 
-                console.log("password is correct");
-
                 if (account.role === "admin") {
+                    req.session.role = "admin";
 
                     return res.render("admin page.ejs", {
                         details: account
                     });
 
                 } else {
+                    req.session.role = "user";
 
-                    return res.render("user page.ejs", { record: account });
+                    return res.render("user page.ejs", { details: account });
 
                 }
 
@@ -101,13 +114,11 @@ app.post("/signup", async (req, res) => {
         res.send("User already exist!")
     } else {
         const creatAccount = await db.query(
-            "INSERT INTO user_list (name, email, user_id, password, role, status) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *",
+            "INSERT INTO user_list (name, email, user_id, password, role, status) VALUES ($1, $2, $3, $4, $5, $6)",
             [name, email, userId, password, role, status]
         );
 
-        const account = creatAccount.rows;
-
-        res.render("user page.ejs", { account: account[0] });
+        res.json("Account created sucessfully");
     }
 
 });
@@ -129,11 +140,15 @@ app.post("/save/:id", async (req, res) => {
             [name, email, gender, password, role, id]
         );
 
-        res.render("user list.ejs", { userList: result });
+        res.redirect(`/edit/${id}`);
 
     } else {
         res.send("Account not found")
     }
+});
+
+app.post("/log-out", (req, res) => {
+    res.redirect("/");
 });
 
 app.post("/delete/:id", async (req, res) => {

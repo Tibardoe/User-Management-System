@@ -20,6 +20,10 @@
 
 <body>
     <main>
+        <form action="/log-out" method="post">
+            <button class="logout-btn" type="submit">Log Out</button>
+        </form>
+
         <div class="info-container">
             <% initials=details.name.split(" ").map(name => name[0]).join("") %>
                 <span class=" circle-text">

@@ -98,6 +98,21 @@ main {
     background-color: var(--secondaryColor);
 }
 
+.logout-btn {
+    background: none;
+    border: none;
+    font-family: var(--bodyFontFamily);
+    padding: 7px 15px;
+    border-radius: 15px;
+    font-size: 1rem;
+    background-color: var(--accentColor);
+    transition: 0.2s ease;
+}
+
+.logout-btn:hover {
+    background-color: #395271;
+}
+
 
 
 /* Tablets */
