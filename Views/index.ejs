@@ -73,8 +73,11 @@
 
                 <div class="remember-section">
                     <div class="remember-check">
-                        <span class="checkbox"></span>
-                        <p>Remember Me</p>
+                        <input type="checkbox" id="customCheckbox" class="hidden-checkbox">
+                        <label for="customCheckbox" class="custom-label">
+                            <span class="checkbox"></span>
+                            Remember Me
+                        </label>
                     </div>
                     <a class="forgot" onclick="handleClick(this)">Forgot Password?</a>
                 </div>
@@ -157,14 +160,14 @@
 
             <form action="/resetpassword" class="reset-form" method="post">
                 <div class="username-area">
-                    <label for="Name">id</label>
+                    <label for="user-id">User id</label>
                     <div class="username">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1.5em" height="1.5em" viewBox="0 0 24 24">
                             <path fill="black"
                                 d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4" />
                         </svg>
-                        <input type="text" class="username-input" name="name" placeholder="Type your id. eg,. 219419"
-                            required>
+                        <input type="text" class="username-input" name="userid"
+                            placeholder="Type your user id. eg,. 219419" required>
                     </div>
                 </div>
 

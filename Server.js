@@ -95,9 +95,10 @@ app.post("/login", async (req, res) => {
         }
     }
 
-    if (!userFound) {
+    if (!account) {
         return res.json("Username not found!");
     }
+
 });
 
 app.post("/signup", async (req, res) => {
@@ -121,6 +122,20 @@ app.post("/signup", async (req, res) => {
         res.json("Account created sucessfully");
     }
 
+});
+
+app.post("/resetpassword", async (req, res) => {
+    const userId = parseInt(req.body.userid);
+    const password = req.body.password;
+    const response = await db.query("SELECT * FROM user_list");
+    const result = response.rows;
+    const foundRecord = result.find(record => userId === record.user_id);
+    if (foundRecord) {
+        await db.query("UPDATE user_list SET password = $1 WHERE user_id = $2", [password, userId]);
+        res.status(200).json("Password updated successfully");
+    } else {
+        res.json("Account with this id not found!");
+    };
 });
 
 app.post("/save/:id", async (req, res) => {
@@ -147,8 +162,13 @@ app.post("/save/:id", async (req, res) => {
     }
 });
 
-app.post("/log-out", (req, res) => {
-    res.redirect("/");
+app.get("/logout", (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            return res.send("Error in logging out.");
+        }
+        res.redirect("/");
+    });
 });
 
 app.post("/delete/:id", async (req, res) => {
