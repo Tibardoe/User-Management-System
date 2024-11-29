@@ -12,10 +12,10 @@ npm start
 ```
 Open http://localhost:3000 in your browser.
 
-![Home Page](public/images/Screenshot%202024-11-29%20085753.png)
-![Login Page](public/images/Screenshot%202024-11-29%20085808.png)
-![User Page](public/images/Screenshot%202024-11-29%20091517.png)
-![User List](public/images/Screenshot%202024-11-29%20091625.png)
+![Home Page](Public/images/Screenshot%202024-11-29%20085753.png)
+![Login Page](Public/images/Screenshot%202024-11-29%20085808.png)
+![User Page](Public/images/Screenshot%202024-11-29%20091517.png)
+![User List](Public/images/Screenshot%202024-11-29%20091625.png)
 
 ## FEATURES
 * User tracking
